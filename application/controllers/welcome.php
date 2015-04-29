@@ -1,6 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
+	
+	public function __construct(){
+		parent::__construct();
+		$this->load->spark('ion_auth/2.5.0');
+		if ($this->ion_auth->logged_in() == false)
+		{
+			redirect('user/login');
+		}	
+	}
+		
+
 
 	/**
 	 * Index Page for this controller.
